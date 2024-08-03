@@ -1,82 +1,57 @@
 /* https://colorhunt.co/palette/22283131363f76abaeeeeeee */
 /*   border: 3px solid red; */
+/* https://stackoverflow.com/questions/45536537/centering-in-css-grid */
 
 * {
   margin: 0;
   padding: 0;
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: solid 2px #31363f;
-}
-
 body {
-  min-height: 100vh;
   display: block;
-  background-color: #222831;
   justify-content: center;
   align-items: center;
-
-  box-sizing: border-box;
+  height: 100vh;
+  background-color: #222831;
 }
 
-h1 {
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  border-bottom: 1px solid #31363f;
   color: #eeeeee;
-  padding: 8px;
-  margin: 8px;
+}
+
+.header-items {
+  margin: 10px;
+}
+
+.play-area {
+  display: flex;
+}
+
+.grid {
+  display: grid;
+  margin: auto;
 }
 
 .row {
   display: flex;
+  height: 65px;
+  margin: 2px;
 }
 
-#row-one,
-#row-two,
-#row-three,
-#row-four,
-#row-five {
-  margin-bottom: 5px;
-}
-
-.column {
-  height: 100%;
-  width: 100%;
-  border: solid 1px #31363f;
-}
-
-#column-one {
-  margin-right: 0px;
-}
-
-#column-five {
-  margin-left: 3px;
-}
-
-#column-two,
-#column-three,
-#column-four {
-  margin-left: 3px;
-  margin-right: 0px;
-}
-
-.item {
-  min-width: 0;
-  min-height: 0;
-}
-
-#play-area {
-  display: grid;
-  height: 480px;
-  width: 400px;
-  margin: auto;
-  margin-top: 30px;
-}
-
-.header {
+.cell {
+  display: flex;
+  width: 60px;
+  justify-content: center;
+  border: 2px solid #31363f;
+  margin: 3px;
+  font-size: 2rem;
+  align-items: center;
   color: #eeeeee;
-  margin: 8px;
-  padding: 8px;
+  text-transform: capitalize;
+  background-color: #222831;
 }
