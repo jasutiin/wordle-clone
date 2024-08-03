@@ -1,3 +1,7 @@
+const letters_used = [];
+const row_numbers = 6;
+const api_url = 'https://random-word-api.herokuapp.com/word?length=5';
+
 const cells = [
   'cell-1',
   'cell-2',

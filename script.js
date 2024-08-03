@@ -1,13 +1,23 @@
-const letters_used = [];
-const colour_status = [0, 0, 0, 0, 0]; // 0 for no letter, 1 for green, 2 for yellow
-let row_numbers = 6;
 let current_row = 0;
 let current_cell = 0;
-const answer = 'misty';
+let answer = '';
 
-// making the 2d array
-for (let i = 0; i < row_numbers; i++) {
-  letters_used[i] = [];
+// Make a GET request
+// code from: https://www.freecodecamp.org/news/make-api-calls-in-javascript/
+function get_new_word() {
+  fetch(api_url)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then((data) => {
+      answer = data[0];
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
 }
 
 // if green, then don't keep looking. break?
@@ -35,6 +45,36 @@ function determineAnswer() {
     j = 0;
   }
 }
+
+function reset() {
+  current_row = 0;
+  current_cell = 0;
+  get_new_word();
+
+  for (i = 0; i < row_numbers; i++) {
+    while (letters_used[i].length != 0) {
+      letters_used[i].pop();
+    }
+  }
+
+  cells.forEach((element) => {
+    document.getElementById(element).style.backgroundColor = '#222831';
+    document.getElementById(element).textContent = '';
+  });
+  //document.querySelector('.cell').style.backgroundColor = '#222831';
+  //document.querySelector('.cell').textContent = '';
+
+  console.log(current_cell);
+  console.log(current_row);
+  console.log(letters_used);
+}
+
+// making the 2d array
+for (let i = 0; i < row_numbers; i++) {
+  letters_used[i] = [];
+}
+
+get_new_word();
 
 addEventListener('keydown', (e) => {
   // if a letter key is pressed
@@ -70,11 +110,13 @@ addEventListener('keydown', (e) => {
   } else if (e.code === 'Enter') {
     if (letters_used[current_row].length != 5) {
       alert('word has to be 5 letters long');
+    } else if (current_row === 5) {
+      determineAnswer();
+      alert(answer);
+      reset();
+      // reset everything
     } else {
       determineAnswer();
     }
   }
-  console.log(letters_used);
-  console.log(current_row);
-  console.log(current_cell);
 });
